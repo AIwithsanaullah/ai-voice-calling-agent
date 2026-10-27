@@ -1,110 +1,64 @@
-# 🎙️ AI Voice & Calling Agent
+# AI Voice Calling Agent
 
-> **Built by [Sana Ullah](https://github.com/AIwithsanaullah) — NEXORA AI SOLUTION**
-> Automated voice agent handling inbound and outbound calls for lead qualification and appointment booking — without human intervention.
+**A reference design for voice-based lead qualification and appointment assistance.**
 
----
+Built by [Sana Ullah](https://github.com/AIwithsanaullah) · [NEXORA AI Solutions](https://nexoraaihq.com/)
 
-## 🎯 Problem It Solves
+> **Project status:** This repository documents a proposed voice-agent flow and prompt. It is not evidence of a deployed production calling system. Provider setup, call tests, and integrations must be verified before claiming them as live.
 
-Businesses lose leads every day because:
-- Calls go unanswered outside business hours
-- Staff waste time on unqualified prospects
-- Manual follow-up calls are slow and inconsistent
-- Booking appointments over phone takes 15+ minutes
+## Use cases
 
-**This AI voice agent handles all calls automatically — 24/7.**
+- Answer inbound enquiries with a clear AI disclosure.
+- Collect a small, relevant set of qualification details.
+- Answer only from approved business information.
+- Offer appointment times only after checking actual availability.
+- Summarize the call and route complex requests to a human.
+- Support outbound calls only when the business has a lawful basis and appropriate consent.
 
----
+## Proposed call flow
 
-## ✅ What This System Does
+1. Identify the business and disclose that the caller is speaking with an AI assistant.
+2. Ask what the caller needs help with.
+3. Collect only required details; confirm names, numbers, and dates.
+4. Use approved tools for property information or appointment availability.
+5. Repeat any proposed appointment details and get confirmation.
+6. Offer a human handoff when requested or when confidence is low.
+7. Save a minimal call summary and the outcome, subject to retention rules.
 
-| Feature | Result |
+## Suggested components
+
+| Component | Possible role |
 |---|---|
-| Inbound Call Handling | Answers every call instantly — no missed leads |
-| Lead Qualification | Qualifies prospects through natural conversation |
-| Appointment Booking | Books appointments for qualified leads automatically |
-| Objection Handling | Manages common objections naturally |
-| Human Escalation | Routes high-value calls to human staff in real time |
-| Outbound Calling | Follows up with cold leads automatically |
+| Voice provider (for example Retell AI or Twilio-based setup) | Call connection and speech interface |
+| n8n | Workflow orchestration and tool calls |
+| Approved business knowledge | Grounded answers |
+| Calendar/CRM | Booking and lead updates after confirmation |
+| Webhooks | Pass call events to authorized workflows |
 
----
+The exact stack depends on the deployment. The repository does not claim that every component is currently connected.
 
-## 🛠️ Tech Stack
+## Guardrails
 
-| Tool | Purpose |
-|---|---|
-| **Voice AI** | Natural speech processing and generation |
-| **Twilio** | Call handling and phone number management |
-| **n8n** | Automation workflow engine |
-| **OpenAI GPT-4** | AI conversation and reasoning |
-| **Webhook Integration** | Real-time event handling |
-| **Supabase** | Call logs and lead records |
+- Never pretend to be a human.
+- Do not fabricate prices, availability, policies, or completed actions.
+- Do not claim a booking succeeded until the calendar tool confirms it.
+- Confirm before taking consequential actions.
+- Honor requests to stop or speak with a person.
+- Follow local call-recording, consent, privacy, and telemarketing requirements.
+- Keep API keys and provider credentials out of Git.
 
----
+## Repository contents
 
-## 🔄 How It Works
+- [Voice agent prompt](prompts/voice-agent-prompt.md)
+- [Setup checklist](docs/setup-guide.md)
+- [Test cases](tests/test-cases.md)
 
-```
-1. Inbound call received via Twilio
-        ↓
-2. AI greets caller and starts qualification
-        ↓
-3. Natural multi-turn conversation with prospect
-        ↓
-4. Lead scored based on qualification criteria
-        ↓
-5. Qualified → Appointment booked automatically
-   Unqualified → Politely ended + logged
-        ↓
-6. High-value → Transferred to human agent live
-        ↓
-7. Call summary saved to CRM automatically
-```
+## Validation checklist
 
----
+Before calling this production-ready, verify inbound and outbound routing separately, tool failure handling, interruption behavior, latency, call recording settings, opt-out behavior, human handoff, and actual call logs. Use a test number and synthetic data first.
 
-## 📊 Results
+## Contact
 
-- 📞 **100% call answer rate** — no missed leads
-- ⚡ **Qualification in under 2 minutes** per call
-- 📅 **Appointments booked instantly** without staff
-- 🕐 **24/7 availability** — handles calls at any hour
-- 💼 **Staff time saved** — only speaks to qualified leads
-
----
-
-## 📂 Repository Structure
-
-```
-ai-voice-calling-agent/
-│
-├── workflows/
-│   ├── inbound-call-handler.json    # Inbound call workflow
-│   ├── outbound-caller.json         # Outbound follow-up workflow
-│   └── call-summary-logger.json     # CRM update workflow
-│
-├── prompts/
-│   ├── voice-agent-prompt.md        # Main voice agent prompt
-│   └── objection-handling.md        # Objection handling scripts
-│
-├── docs/
-│   └── setup-guide.md              # Twilio + n8n setup guide
-│
-└── README.md
-```
-
----
-
-## 🚀 Want This System For Your Business?
-
-I build custom AI voice agents for real estate agents and service businesses worldwide.
-
-[![Email](https://img.shields.io/badge/Email-sana@nexoraaihq.com-1B4FD8?style=flat-square&logo=gmail&logoColor=white)](mailto:sana@nexoraaihq.com)
-[![Website](https://img.shields.io/badge/Website-nexoraaihq.com-0D1B2A?style=flat-square&logo=google-chrome&logoColor=white)](https://nexoraaihq.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Sana_Ullah-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/sana-ullah-4447a0427)
-[![WhatsApp](https://img.shields.io/badge/WhatsApp-Chat_Now-25D366?style=flat-square&logo=whatsapp&logoColor=white)](https://wa.me/923455417328)
-
----
-
-> **NEXORA AI SOLUTION** · nexoraaihq.com · Building AI that works for real businesses
+- Website: https://nexoraaihq.com/
+- LinkedIn: https://www.linkedin.com/in/sana-ullah-4447a0427/
+- GitHub: https://github.com/AIwithsanaullah
