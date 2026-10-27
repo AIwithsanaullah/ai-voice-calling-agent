@@ -22,14 +22,13 @@ Built by [Sana Ullah](https://github.com/AIwithsanaullah) · [NEXORA AI Solution
 3. Collect only required details; confirm names, numbers, and dates.
 4. Use approved tools for property information or appointment availability.
 5. Repeat any proposed appointment details and get confirmation.
-6. Offer a human handoff when requested or when confidence is low.
-7. Save a minimal call summary and the outcome, subject to retention rules.
+6. Save a minimal call summary and the outcome, subject to retention rules.
 
 ## Suggested components
 
 | Component | Possible role |
 |---|---|
-| Voice provider (for example Retell AI or Twilio-based setup) | Call connection and speech interface |
+| Voice provider such as Retell AI or a Twilio-based setup | Call connection and speech interface |
 | n8n | Workflow orchestration and tool calls |
 | Approved business knowledge | Grounded answers |
 | Calendar/CRM | Booking and lead updates after confirmation |
